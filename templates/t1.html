@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>T1</title>
+</head>
+<body>
+    {% block header-menu %}
+    <ul>
+        <li>home</li>
+    </ul>
+    {% endblock %}
+    {% block content-container %}
+    <h1>数据展现</h1>
+    <ul>
+        {% for user_obj in user_objs %}
+{#            {% ifequal user_obj.username 'alex3' %}#}
+{#            {% if forloop.counter > 2 %}#}
+            {% if forloop.counter|divisibleby:"2" %}
+                <li style="background-color:green">username:{{ user_obj.user}},password:{{ user_obj.pwd }}</li>
+            {% else %}
+               <li>username:{{ user_obj.user }}, password:{{ user_obj.pwd }}</li>
+            {%  endif %}
+        {% endfor %}
+    </ul>
+    {% endblock %}
+    <div>
+        <span style="background: antiquewhite;color:black;font-size: 30px;">用户输入</span>
+        <form action="" method="post">{% csrf_token %}
+            <input name="username" type="text"/>
+            <input name="password" type="password"/>
+            <input type="submit" value="提交"/>
+        </form>
+
+    </div>
+<footer>
+    <p> Powered by echoliu</p>
+</footer>
+</body>
+</html>
